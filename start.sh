@@ -41,7 +41,9 @@ while true; do
   SERVERTIME=`curl -s "$SITE/ajax/time/get-server-datetime" | jq '.currentTime'`;
   tmp="${SERVERTIME%\"}";
   SERVERTIME="${tmp#\"}";
+
   scrot -d 30 -q 40 "$SERVERTIME.png" -e 'mv $f '"$DAY"'/';
+
   lftp -e "
   open $HOST
   user $USER $PASS
