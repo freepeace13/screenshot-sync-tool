@@ -7,17 +7,20 @@ USER=''
 PASS=''
 TARGETFOLDER=''
 SOURCEFOLDER=''
+IMAGEQUALITY=40
+INTERVAL=60
+
 
 while true; do
   echo "Waiting to capture...";
 
-  scrot -d 30 -q 40 '%Y-%m-%d %H:%M:%S.png' -e 'mv $f ./captured';
+  scrot -d $INTERVAL -q $IMAGEQUALITY '%Y-%m-%d-%H:%M:%S.png' -e 'mv $f ./captured';
 
   lftp -e "
   open $HOST
   user $USER $PASS
   lcd $SOURCEFOLDER
-  mirror --reverse --delete --verbose $SOURCEFOLDER $TARGETFOLDER
+  mirror --reverse --verbose $SOURCEFOLDER $TARGETFOLDER
   bye
   "
 done
