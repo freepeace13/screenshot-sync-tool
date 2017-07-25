@@ -28,7 +28,7 @@ onlineModeCapturing() {
     fi
 
     ./transfer.sh &
-    trap "kill $(ps aux | grep transfer.sh | grep -v grep | awk '{print $2}')" EXIT
+    trap "kill $(ps aux | grep transfer.sh | grep -v grep | awk '{print $2}') && kill $(ps aux | grep lftp | grep -v grep | awk '{print $2}')" EXIT
 
     while true; do
         scrot -d $INTERVAL -q $IMAGEQUALITY "$storage/$(date '+%Y-%m-%d-%H:%M:%S').png"
