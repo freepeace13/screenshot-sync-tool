@@ -1,0 +1,8 @@
+#!/bin/bash
+
+HOST=''
+USER=''
+PASS=''
+TARGETFOLDER=''
+IMAGEQUALITY=30
+INTERVAL=10
